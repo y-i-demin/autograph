@@ -6,6 +6,7 @@ var stylus = require('gulp-stylus');
 var rename = require('gulp-rename');
 var autoprefixer = require('gulp-autoprefixer');
 var exec = require("child_process").exec;
+var nib = require('nib');
 
 var browsers = ["ff >= 19", "ie >= 8", "opera >= 11", "safari >= 5", "chrome >= 25", "android >= 4", "ios >= 6"];
 var paths = {
@@ -32,6 +33,7 @@ gulp.task('scripts', function() {
 gulp.task('css', function() {
     return gulp.src('blocks/blocks.styl')
         .pipe(stylus({
+            use: nib(),
             compress: true
         }))
         .pipe(autoprefixer({
