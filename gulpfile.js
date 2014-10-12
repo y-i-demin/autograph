@@ -4,9 +4,10 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var stylus = require('gulp-stylus');
 var rename = require('gulp-rename');
+var autoprefixer = require('gulp-autoprefixer');
 var exec = require("child_process").exec;
-var nib = require('nib');
 
+var browsers = ["ff >= 19", "ie >= 8", "opera >= 11", "safari >= 5", "chrome >= 25", "android >= 4", "ios >= 6"];
 var paths = {
     scripts: [
         'node_modules/es5-shim/es5-shim.js',
@@ -31,8 +32,11 @@ gulp.task('scripts', function() {
 gulp.task('css', function() {
     return gulp.src('blocks/blocks.styl')
         .pipe(stylus({
-            use: nib(),
-            set: ['compress']
+            compress: true
+        }))
+        .pipe(autoprefixer({
+            browsers: browsers,
+            cascade: false
         }))
         .pipe(rename('_autograph.css'))
         .pipe(gulp.dest('static/css'));
