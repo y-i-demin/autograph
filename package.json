@@ -1,0 +1,8 @@
+{
+  "name": "autograph",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "gulp": "^3.8.8"
+  }
+}
