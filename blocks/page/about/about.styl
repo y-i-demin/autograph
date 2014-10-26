@@ -1,0 +1,75 @@
+.slogan
+  position: absolute
+  left: 0
+  top: 0
+  right: 0
+  bottom: 0
+
+  font-family: plumb-li
+  font-size: 48px
+  line-height: 62px
+  letter-spacing: 7px
+
+  width: 640px
+  height: 186px
+  margin: auto
+  
+  text-transform: uppercase
+  text-align: center
+
+  color: #fff
+  
+.benefits
+  position: absolute
+  bottom: 50px
+  left: 50%
+
+  width: 1060px
+  margin: 20px 0 0 -1 * (@width / 2)
+
+  text-transform: uppercase
+
+  &_item
+    list-style: none
+    text-align: center
+    float: left
+    
+    width: 200px
+    margin-left: 86px
+    
+    color: #fff
+    
+    &:first-child
+      margin-left: 0
+
+    &_title
+      font-family: plumb-bl
+      font-size: 29px
+
+      display: block
+      margin: 15px 0 20px
+
+      color: #B98858
+
+    &_hint
+      font-family: plumb-re
+      font-size: 15px
+      
+    &_icon
+      display: block
+      height: 50px
+      width: 53px
+      margin: 0 auto
+
+      background-repeat: no-repeat
+      background-position: left center
+      background-image: url('../i/icons-benefits.png')
+
+      &__quality
+        background-position: -53px center
+
+      &__contract
+        background-position: -106px center
+
+      &__price
+        background-position: -159px center

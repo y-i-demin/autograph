@@ -1,11 +1,50 @@
 <!doctype html>
-<html>
+<html class="is-js_no">
     <head>
         <meta charset="utf-8" />
-        <title>Мастерская афтограф</title>
+        <title>Мастерская Автограф</title>
         <link href="static/css/_autograph.css" rel="stylesheet" />
     </head>
     <body>
+        <div class="header">
+            <div class="logo_wrap"><div class="logo"></div></div>
+            <ul class="nav">
+                <li class="nav_item"><a href="#about" class="nav_item_link">о нас</a></li>
+                <li class="nav_item"><a href="#services" class="nav_item_link">услуги</a></li>
+                <li class="nav_item nav_item__right nav_item__clear"><a href="#contacts" class="nav_item_link">контакты</a></li>
+                <li class="nav_item nav_item__right"><a href="#portfolio" class="nav_item_link">работы</a></li>
+            </ul>
+        </div>
+        <div class="pages">
+            <div class="page page_about" id="about">
+                <div class="slogan">Мы занимаемся перетяжкой салона автомобиля</div>
+                <ul class="benefits">
+                    <li class="benefits_item">
+                        <span class="benefits_item_icon"></span>
+                        <span class="benefits_item_title">гарантия 2 года</span>
+                        <span class="benefits_item_hint">на любую нашу работу</span>
+                    </li>
+                    <li class="benefits_item">
+                        <span class="benefits_item_icon benefits_item_icon__quality"></span>
+                        <span class="benefits_item_title">высокое качество</span>
+                        <span class="benefits_item_hint">и наших материалов, и нашей работы</span>
+                    </li>
+                    <li class="benefits_item">
+                        <span class="benefits_item_icon benefits_item_icon__contract"></span>
+                        <span class="benefits_item_title">работа по договору</span>
+                        <span class="benefits_item_hint">где прописана вся ответственность сторон</span>
+                    </li>
+                    <li class="benefits_item">
+                        <span class="benefits_item_icon benefits_item_icon__price"></span>
+                        <span class="benefits_item_title">цена-качество</span>
+                        <span class="benefits_item_hint">лучшее соотношение на рынке</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="page page_services" id="services"></div>
+            <div class="page page_portfolio" id="portfolio"></div>
+            <div class="page page_contacts" id="contacts"></div>
+        </div>
         <script src="static/js/_autograph.js"></script>
     </body>
 </html>

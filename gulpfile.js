@@ -11,9 +11,9 @@ var nib = require('nib');
 var browsers = ["ff >= 19", "ie >= 8", "opera >= 11", "safari >= 5", "chrome >= 25", "android >= 4", "ios >= 6"];
 var paths = {
     scripts: [
-        'node_modules/es5-shim/es5-shim.js',
+        'blocks/*.js',
         'blocks/**/*.js',
-        'blocks/*.js'
+        'node_modules/es5-shim/es5-shim.js'
     ],
     styl: [
         'blocks/*.styl',
@@ -45,7 +45,7 @@ gulp.task('css', function() {
 });
 
 gulp.task('clean', function() {
-    var cmd = 'rm -rf views static/{css,js}/';
+    var cmd = 'rm -rf views static/{css,js,i}/';
     exec(cmd, function(err, stdout, stderr) {
         if (err) {
             cb(new Error(err), undefined);

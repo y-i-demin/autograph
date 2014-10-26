@@ -2,10 +2,37 @@
   padding: 0
   margin: 0
 
+html
+body
+  width: 100%
+  height: 100%
+
 body
   font: 80% Arial, sans-serif
   min-width: 980px
 
-// @import('somefile')
+@font-face
+  font-family: plumb-re
+  src: url('../font/plumb-re.otf')
+
+@font-face
+  font-family: plumb-me
+  src: url('../font/plumb-me.otf')
+
+@font-face
+  font-family: plumb-li
+  src: url('../font/plumb-li.otf')
+
+@font-face
+  font-family: plumb-bl
+  src: url('../font/plumb-bl.otf')
+
+@font-face
+  font-family: plumb-bo
+  src: url('../font/plumb-bo.otf')
 
 @import('../node_modules/nib')
+@import('header/')
+@import('navigation/')
+@import('page/')
+@import('page/about')

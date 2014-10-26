@@ -1,0 +1,26 @@
+.pages
+  width: 100%
+  height: 100%
+  
+  min-height: 660px
+  overflow: hidden
+
+.page
+  @extend .pages
+
+  z-index: 1
+  position: relative
+
+  background-repeat: no-repeat
+  background-position: center
+  background-size: cover
+  
+  &_about
+    background-image: url('../i/bg-about.png')
+
+  &_services,
+  &_contacts
+    background-color: #fff
+
+  &_portfolio
+    background-color: #364654
