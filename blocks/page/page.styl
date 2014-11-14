@@ -14,9 +14,18 @@
   background-repeat: no-repeat
   background-position: center
   background-size: cover
-  
+
+  &::before
+    display: block
+    height: 300px
+    content: " "
+
+  &_content
+    position: relative
+    height: 100%
+
   &_about
-    background-image: url('../i/bg-about.png')
+    background-image: url("../i/bg-about.png")
 
   &_services,
   &_contacts

@@ -5,3 +5,13 @@
     n = "createElementNS";
     e[c] = e[c][r]("is-js_no", "is-js_yes");
 })(document);
+
+function pageResize() {
+    // 300 - высота шапки
+    $('.page_content').css('height', window.innerHeight - 300 + 'px');
+}
+
+(function() {
+    $(window).on('resize', pageResize);
+    pageResize();
+})();

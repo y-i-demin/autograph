@@ -1,0 +1,73 @@
+.services
+  font-family: plumb-re
+  font-size: 30px
+
+  position: absolute
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+
+  width: 100%
+  max-width: 1075px
+  height: 480px
+  margin: auto
+
+  text-align: center
+  text-transform: uppercase
+
+  background-repeat: no-repeat
+  background-position: center bottom
+  background-image: url("../i/bg-services.png")
+  
+  color: #273440
+  
+  &_separator
+    height: 3px
+    margin-top: 50px
+
+    color: #CBCED1
+
+    border-top: 2px solid
+    border-bottom: @border-top
+
+    clear: both
+
+  &_title
+    font-family: plumb-bl
+
+    letter-spacing: 18px
+
+  &_list
+    list-style: none
+
+    width: 825px
+    margin: 35px auto 0
+    
+    clearfix()
+
+    &_item
+      float: left
+
+      margin: 0 40px
+      height: 90px
+
+      &_icon
+        display: block
+
+        width: 44px
+        height: 45px
+        margin: 0 auto 10px
+
+        background-repeat: no-repeat
+        background-position: left center
+        background-image: url("../i/icons-services.png")
+
+        &__panel
+          background-position: -44px center
+          
+        &__roof
+          background-position: -132px center
+          
+        &__wheel
+          background-position: -88px center

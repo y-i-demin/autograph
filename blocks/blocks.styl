@@ -31,8 +31,23 @@ body
   font-family: plumb-bo
   src: url('../font/plumb-bo.otf')
 
+a:link,
+a:visited
+  text-decoration: none
+  color: #364654
+
+  transition: color 0.15s ease-out
+
+a:hover,
+a:active
+  text-decoration: none
+  color: #f00
+
 @import('../node_modules/nib')
 @import('header/')
 @import('navigation/')
 @import('page/')
 @import('page/about')
+@import('page/contacts')
+@import('page/services')
+@import('page/portfolio')
