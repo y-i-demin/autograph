@@ -7,8 +7,8 @@
 })(document);
 
 function pageResize() {
-    // 300 - высота шапки
-    $('.page_content').css('height', window.innerHeight - 300 + 'px');
+    // 215 - высота шапки
+    $('.page_content').css('height', window.innerHeight - 215 + 'px');
 }
 
 (function() {
