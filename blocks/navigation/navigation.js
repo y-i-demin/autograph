@@ -4,15 +4,18 @@
         map: ['about', 'services', 'portfolio', 'contacts'],
         currentPage: 'about',
 
-        nextStep: function() {
+        nextStep: function(event) {
             var self = this;
+
+            event = event.originalEvent;
+            $(document).off('mousewheel DOMMouseScroll');
+
             setTimeout(function() {
-                $(document).on('scroll', self.nextStep.bind(self));
-            }, 500);
-            $(document).off('scroll');
+                $(document).on('mousewheel DOMMouseScroll', self.nextStep.bind(self));
+            }, 1500);
 
             var currentIndex = this.map.indexOf(this.currentPage);
-            var dir = $(document).scrollTop() && $(document).scrollTop() > 0 ? 1 : -1;
+            var dir = (event.wheelDelta ? event.wheelDelta : event.detail/-1) < 0 ? 1 : -1;
             // next: 1
             // prev: -1
 
@@ -47,7 +50,7 @@
 
         bindEvents: function() {
             $(document).on('click', '.nav a', this.setCurrent.bind(this));
-            $(document).on('scroll', this.nextStep.bind(this));
+            $(document).on('mousewheel DOMMouseScroll', this.nextStep.bind(this));
         },
 
         init: function() {
