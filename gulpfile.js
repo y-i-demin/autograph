@@ -44,7 +44,7 @@ gulp.task('css', function() {
 });
 
 gulp.task('clean', function() {
-    var cmd = 'rm -rf views static/{css,js,i}/';
+    var cmd = 'rm -rf views static/{css,js}/';
     exec(cmd, function(err, stdout, stderr) {
         if (err) {
             cb(new Error(err), undefined);
