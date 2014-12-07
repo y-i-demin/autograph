@@ -12,7 +12,8 @@ var browsers = ["ff >= 19", "ie >= 8", "opera >= 11", "safari >= 5", "chrome >= 
 var paths = {
     scripts: [
         'blocks/*.js',
-        'blocks/**/*.js'
+        'blocks/**/*.js',
+        'blocks/**/**/*.js'
     ],
     styl: [
         'blocks/*.styl',
