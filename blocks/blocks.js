@@ -6,6 +6,8 @@
     e[c] = e[c][r]("is-js_no", "is-js_yes");
 })(document);
 
+window.autograph = {};
+
 function pageResize() {
     // 215 - высота шапки
     $('.page_content').css('height', window.innerHeight - 215 + 'px');

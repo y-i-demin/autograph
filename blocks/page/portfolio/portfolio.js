@@ -1,18 +1,20 @@
 (function() {
-    ({
+    autograph.portfolio = {
         btWidth: 38,
         itemsInSlide: 4,
         itemsCount: 0,
         slidesCount: 0,
         currentStep: 0,
 
-        _dotDraft: function() {
+        dotDraft: function() {
             return '<li class="bt_dot"></li>';
         },
 
         bindEvents: function() {
             var self = this;
 
+            $(document).on('click', '.js-slider-group .slider_group_item_preview', this.showWork.bind(this));
+            $(document).on('click', '.js-paranja, .js-closer', this.hideWork.bind(this));
             $(document).on('click', '.js-bt-left, .js-bt-right, .js-slider-dots li', this.nextSlide.bind(this));
             $(window).on('resize', function() {
                 self.setSizes();
@@ -37,7 +39,7 @@
                 i = this.slidesCount;
 
             while (i) {
-                controls += this._dotDraft();
+                controls += this.dotDraft();
                 i--;
             }
 
@@ -84,15 +86,33 @@
             $('.js-slider-dots li').get(this.currentStep).className += ' bt_dot__active';
         },
 
+        showWork: function(event) {
+            this.paranja.show();
+            this.portfolio.show();
+
+            $(document).off('mousewheel DOMMouseScroll');
+        },
+
+        hideWork: function() {
+            this.paranja.hide();
+            this.portfolio.hide();
+
+            $(document).on('mousewheel DOMMouseScroll', autograph.navigation.nextStep.bind(autograph.navigation));
+        },
+
         init: function() {
             this.slider = $('.js-slider-group');
             this.itemsCount = $('li', this.slider).size();
             this.slideWidth = window.innerWidth;
             this.slidesCount = this.getSlidesCount();
+            this.paranja = $('.js-paranja');
+            this.portfolio = $('.js-portfolio_list');
 
             this.setSizes();
             this.setControls();
             this.bindEvents();
         }
-    }).init();
+    };
+
+    autograph.portfolio.init();
 })();

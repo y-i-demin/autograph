@@ -1,5 +1,5 @@
 (function() {
-    ({
+    autograph.navigation = {
         slideHeight: 780,
         map: ['about', 'services', 'portfolio', 'contacts'],
         currentPage: 'about',
@@ -61,5 +61,7 @@
             this.slideHeight = window.innerHeight;
             this.bindEvents();
         }
-    }).init();
+    };
+
+    autograph.navigation.init();
 })();
