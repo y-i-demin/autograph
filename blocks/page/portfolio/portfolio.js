@@ -7,7 +7,7 @@
         currentStep: 0,
 
         _dotDraft: function() {
-            return '<li class="bt-dot"></li>';
+            return '<li class="bt_dot"></li>';
         },
 
         bindEvents: function() {
@@ -42,7 +42,7 @@
             }
 
             $('.js-slider-dots').html(controls);
-            $('.js-slider-dots li:first').addClass('bt-dot__active');
+            $('.js-slider-dots li:first').addClass('bt_dot__active');
             $('.js-slider-controls').css({
                 width: this.btWidth * this.slidesCount + 'px'
             });
@@ -80,8 +80,8 @@
                 'left': this.currentStep * this.slideWidth * -1
             });
 
-            $('.js-slider-dots li').removeClass('bt-dot__active');
-            $('.js-slider-dots li').get(this.currentStep).className += ' bt-dot__active';
+            $('.js-slider-dots li').removeClass('bt_dot__active');
+            $('.js-slider-dots li').get(this.currentStep).className += ' bt_dot__active';
         },
 
         init: function() {
