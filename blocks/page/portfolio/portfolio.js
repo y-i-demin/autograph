@@ -5,6 +5,8 @@
         itemsCount: 0,
         slidesCount: 0,
         currentStep: 0,
+        currentIndex: 0,
+        maxIndex: 0,
 
         dotDraft: function() {
             return '<li class="bt_dot"></li>';
@@ -15,6 +17,8 @@
 
             $(document).on('click', '.js-slider-group .slider_group_item_preview', this.showWork.bind(this));
             $(document).on('click', '.js-paranja, .js-closer', this.hideWork.bind(this));
+            $(document).on('click', '.js-portfolio_controls_preview li', this.changeWorkImage.bind(this));
+            $(document).on('click', '.js-portfolio-bt-left, .js-portfolio-bt-right', this.triggerShowWork.bind(this));
             $(document).on('click', '.js-bt-left, .js-bt-right, .js-slider-dots li', this.nextSlide.bind(this));
             $(window).on('resize', function() {
                 self.setSizes();
@@ -86,9 +90,38 @@
             $('.js-slider-dots li').get(this.currentStep).className += ' bt_dot__active';
         },
 
-        showWork: function(event) {
+        showWork: function(event, target) {
+            if (!event && !target) {
+                return;
+            }
+
+            var elem = $(event && event.target || target);
+            if (!elem) {
+                return;
+            }
+
+            var data = elem.data() || {};
+
+            $('.js-title').text(data.title || '');
+            $('.js-portfolio_controls_preview .portfolio_controls_preview_list').hide();
+            $('.js-portfolio').css({
+                'background-image': elem.css('background-image')
+            });
+
+            this.currentIndex = data.index || 0;
+            var preview = $('.js-portfolio_controls_preview .portfolio_controls_preview_list[data-index="' + data.index + '"]');
+
+            if (preview) {
+                $('li', preview).removeClass('portfolio_controls_preview_list_item__active');
+                $('li:first', preview).addClass('portfolio_controls_preview_list_item__active');
+                preview.show();
+            }
+
             this.paranja.show();
             this.portfolio.show();
+
+            this.currentIndex != 0 ? this.pBtLeft.show() : this.pBtLeft.hide();
+            this.currentIndex != this.maxIndex ? this.pBtRight.show() : this.pBtRight.hide();
 
             $(document).off('mousewheel DOMMouseScroll');
         },
@@ -96,8 +129,35 @@
         hideWork: function() {
             this.paranja.hide();
             this.portfolio.hide();
+            this.pBtLeft.hide();
+            this.pBtRight.hide();
 
             $(document).on('mousewheel DOMMouseScroll', autograph.navigation.nextStep.bind(autograph.navigation));
+        },
+
+        triggerShowWork: function(event) {
+            if (!event) {
+                return;
+            }
+
+            var dir = event.target.className.match('left') ? -1 : 1;
+            var nextIndex = parseInt(this.currentIndex, 10) + dir;
+            this.showWork(null, '.js-slider-group .slider_group_item_preview[data-index="' + nextIndex + '"]');
+        },
+
+        changeWorkImage: function(event) {
+            if (!event) {
+                return;
+            }
+
+            var elem = $(event.target);
+
+            $('.js-portfolio_controls_preview li').removeClass('portfolio_controls_preview_list_item__active');
+            elem.addClass('portfolio_controls_preview_list_item__active');
+
+            $('.js-portfolio').css({
+                'background-image': elem.css('background-image')
+            });
         },
 
         init: function() {
@@ -107,6 +167,9 @@
             this.slidesCount = this.getSlidesCount();
             this.paranja = $('.js-paranja');
             this.portfolio = $('.js-portfolio_list');
+            this.maxIndex = $('.js-slider-group .slider_group_item_preview').size() - 1;
+            this.pBtLeft = $('.js-portfolio-bt-left');
+            this.pBtRight = $('.js-portfolio-bt-right');
 
             this.setSizes();
             this.setControls();
