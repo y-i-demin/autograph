@@ -26,12 +26,15 @@ $(function() {
         },
         center: new google.maps.LatLng(56.0615591, 37.861788),
         disableDefaultUI: true,
+        zoomControl: true,
+        zoomControlOptions: {
+            style: google.maps.ZoomControlStyle.SMALL
+        },
         zoom: 15
     });
 
     new google.maps.Marker({
         position: new google.maps.LatLng(56.0615591, 37.858788),
-        title: 'Hello World!',
         map: map,
         icon: 'static/i/icon-point.png'
     });
