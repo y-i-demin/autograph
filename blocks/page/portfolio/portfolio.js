@@ -17,7 +17,7 @@
 
             $(document).on('click', '.js-slider-group .slider_group_item_preview', this.showWork.bind(this));
             $(document).on('click', '.js-paranja, .js-closer', this.hideWork.bind(this));
-            $(document).on('click', '.js-portfolio_controls_preview li', this.changeWorkImage.bind(this));
+            $(document).on('click', '.js-portfolio_controls_preview li', this.changeWork.bind(this));
             $(document).on('click', '.js-portfolio-bt-left, .js-portfolio-bt-right', this.triggerShowWork.bind(this));
             $(document).on('click', '.js-bt-left, .js-bt-right, .js-slider-dots li', this.nextSlide.bind(this));
             $(window).on('resize', function() {
@@ -102,7 +102,6 @@
 
             var data = elem.data() || {};
 
-            $('.js-title').text(data.title || '');
             $('.js-portfolio_controls_preview .portfolio_controls_preview_list').hide();
             $('.js-portfolio').css({
                 'background-image': elem.css('background-image')
@@ -111,10 +110,13 @@
             this.currentIndex = data.index || 0;
             var preview = $('.js-portfolio_controls_preview .portfolio_controls_preview_list[data-index="' + data.index + '"]');
 
-            if (preview) {
+            if (preview[0]) {
                 $('li', preview).removeClass('portfolio_controls_preview_list_item__active');
                 $('li:first', preview).addClass('portfolio_controls_preview_list_item__active');
+                $('.js-title').text($('li:first', preview).data('title') || '');
                 preview.show();
+            } else {
+                $('.js-title').text(data.title || '');
             }
 
             this.paranja.show();
@@ -145,16 +147,18 @@
             this.showWork(null, '.js-slider-group .slider_group_item_preview[data-index="' + nextIndex + '"]');
         },
 
-        changeWorkImage: function(event) {
+        changeWork: function(event) {
             if (!event) {
                 return;
             }
 
             var elem = $(event.target);
+            var data = elem.data() || {};
 
             $('.js-portfolio_controls_preview li').removeClass('portfolio_controls_preview_list_item__active');
             elem.addClass('portfolio_controls_preview_list_item__active');
 
+            $('.js-title').text(data.title || '');
             $('.js-portfolio').css({
                 'background-image': elem.css('background-image')
             });
