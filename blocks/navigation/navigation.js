@@ -14,10 +14,10 @@
             if (event.type === 'keyup') {
                 if (autograph.util.getKeyCode(event) == 40) {
                     dir = 1;
-                }
-
-                if (autograph.util.getKeyCode(event) == 38) {
+                } else if (autograph.util.getKeyCode(event) == 38) {
                     dir = -1;
+                } else {
+                    return false;
                 }
 
                 $(document).off('keyup');
