@@ -6,7 +6,17 @@
     e[c] = e[c][r]("is-js_no", "is-js_yes");
 })(document);
 
-window.autograph = {};
+window.autograph = {
+    util: {
+        getKeyCode: function(event) {
+            if (event) {
+                return event.keyCode || event.which;
+            }
+
+            return null;
+        }
+    }
+};
 
 function pageResize() {
     // 215 - высота шапки

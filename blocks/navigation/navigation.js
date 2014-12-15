@@ -5,19 +5,30 @@
         currentPage: 'about',
 
         nextStep: function(event) {
-            var self = this;
+            event.preventDefault();
 
-            event = event.originalEvent;
-            $(document).off('mousewheel DOMMouseScroll');
+            var currentIndex = this.map.indexOf(this.currentPage),
+                self = this,
+                dir;
 
-            setTimeout(function() {
-                $(document).on('mousewheel DOMMouseScroll', self.nextStep.bind(self));
-            }, 1500);
+            if (event.type === 'keyup') {
+                if (autograph.util.getKeyCode(event) == 40) {
+                    dir = 1;
+                }
 
-            var currentIndex = this.map.indexOf(this.currentPage);
-            var dir = (event.wheelDelta ? event.wheelDelta : event.detail/-1) < 0 ? 1 : -1;
-            // next: 1
-            // prev: -1
+                if (autograph.util.getKeyCode(event) == 38) {
+                    dir = -1;
+                }
+            } else {
+                event = event.originalEvent;
+                $(document).off('mousewheel DOMMouseScroll');
+
+                setTimeout(function() {
+                    $(document).on('mousewheel DOMMouseScroll', self.nextStep.bind(self));
+                }, 1500);
+
+                dir = (event.wheelDelta ? event.wheelDelta : event.detail/-1) < 0 ? 1 : -1;
+            }
 
             if (dir === 1 && currentIndex === this.map.length - 1) {
                 return;
@@ -51,6 +62,7 @@
         bindEvents: function() {
             $(document).on('click', '.nav a', this.setCurrent.bind(this));
             $(document).on('mousewheel DOMMouseScroll', this.nextStep.bind(this));
+            $(document).on('keyup', this.nextStep.bind(this));
         },
 
         init: function() {

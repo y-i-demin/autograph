@@ -150,7 +150,7 @@
             this.currentIndex != 0 ? this.pBtLeft.show() : this.pBtLeft.hide();
             this.currentIndex != this.maxIndex ? this.pBtRight.show() : this.pBtRight.hide();
 
-            $(document).off('mousewheel DOMMouseScroll');
+            $(document).off('mousewheel DOMMouseScroll keyup');
         },
 
         hideWork: function() {
@@ -159,7 +159,7 @@
             this.pBtLeft.hide();
             this.pBtRight.hide();
 
-            $(document).on('mousewheel DOMMouseScroll', autograph.navigation.nextStep.bind(autograph.navigation));
+            $(document).on('mousewheel DOMMouseScroll keyup', autograph.navigation.nextStep.bind(autograph.navigation));
         },
 
         triggerShowWork: function(event) {
