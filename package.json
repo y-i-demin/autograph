@@ -16,6 +16,7 @@
   "scripts": {
     "prebuild": "npm i",
     "build": "gulp",
+    "prewatch": "npm run build",
     "watch": "gulp watch"
   }
 }
