@@ -5,8 +5,10 @@
         itemsCount: 0,
         slidesCount: 0,
         currentStep: 0,
+        previousStep: 0,
         currentIndex: 0,
         maxIndex: 0,
+        partialShift: false,
 
         dotDraft: function() {
             return '<li class="bt_dot"></li>';
@@ -30,8 +32,9 @@
                 return 0;
             }
 
-            var slides  = this.itemsCount / this.itemsInSlide;
+            var slides = this.itemsCount / this.itemsInSlide;
             if (slides && slides % 1 > 0) {
+                this.partialShift = true;
                 slides = parseInt(slides, 10) + 1;
             }
 
@@ -57,6 +60,10 @@
         setSizes: function() {
             this.slideWidth = window.innerWidth;
 
+            if (this.partialShift) {
+                this.lastShift = this.slideWidth * (this.slidesCount - this.itemsCount / this.itemsInSlide);
+            }
+
             $('li', this.slider).css({
                 'width': this.slideWidth / this.itemsInSlide + 'px'
             });
@@ -71,10 +78,15 @@
                 return;
             }
 
+            var shift,
+                dir;
+
+            this.previousStep = this.currentStep;
+
             if (event.target.className.match('dot')) {
                 this.currentStep = $(event.target).index();
             } else {
-                var dir = event.target.className.match('left') ? -1 : 1;
+                dir = event.target.className.match('left') ? -1 : 1;
                 if ((this.currentStep <= 0 && dir == -1) || (this.currentStep >= this.slidesCount - 1 && dir == 1)) {
                     return;
                 }
@@ -82,8 +94,21 @@
                 this.currentStep += dir;
             }
 
+            currentShift = (this.slider.css('left').replace('px', '') || 0);
+            shift = currentShift - (this.currentStep - this.previousStep) * this.slideWidth;
+
+            if (this.partialShift) {
+                if (this.currentStep === this.slidesCount - 1 && (this.previousStep < this.currentStep)) {
+                    shift += this.lastShift;
+                }
+
+                if (this.currentStep === 0 && (this.previousStep > this.currentStep)) {
+                    shift = 0;
+                }
+            }
+
             this.slider.css({
-                'left': this.currentStep * this.slideWidth * -1
+                'left': shift
             });
 
             $('.js-slider-dots li').removeClass('bt_dot__active');
