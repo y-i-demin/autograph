@@ -19,6 +19,12 @@
                 if (autograph.util.getKeyCode(event) == 38) {
                     dir = -1;
                 }
+
+                $(document).off('keyup');
+
+                setTimeout(function() {
+                    $(document).on('keyup', self.nextStep.bind(self));
+                }, 500);
             } else {
                 event = event.originalEvent;
                 $(document).off('mousewheel DOMMouseScroll');
@@ -48,7 +54,7 @@
             $('.nav a[href="#' + this.currentPage + '"]').addClass('nav_item_link__active');
 
             var self = this;
-            var target = dir && dir * this.slideHeight || $('.page#' + this.currentPage).offset().top;
+            var target = dir && dir * this.slideHeight || this.currentPage && $('.page#' + this.currentPage).offset().top;
 
             $('.pages').animate({
                 scrollTop: '+=' + target
