@@ -1,5 +1,6 @@
 (function() {
     autograph.portfolio = {
+        inProgress: false,
         btWidth: 38,
         itemsInSlide: 4,
         itemsCount: 0,
@@ -74,12 +75,13 @@
         },
 
         nextSlide: function(event) {
-            if (!event) {
+            var self = this,
+                shift,
+                dir;
+
+            if (!event || this.inProgress) {
                 return;
             }
-
-            var shift,
-                dir;
 
             this.previousStep = this.currentStep;
 
@@ -94,6 +96,8 @@
                 this.currentStep += dir;
             }
 
+            this.inProgress = true;
+
             currentShift = (this.slider.css('left').replace('px', '') || 0);
             shift = currentShift - (this.currentStep - this.previousStep) * this.slideWidth;
 
@@ -107,8 +111,10 @@
                 }
             }
 
-            this.slider.css({
+            this.slider.animate({
                 'left': shift
+            }, 350, function() {
+                self.inProgress = false;
             });
 
             $('.js-slider-dots li').removeClass('bt_dot__active');
