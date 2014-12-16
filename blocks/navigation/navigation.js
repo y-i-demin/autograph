@@ -56,10 +56,16 @@
             var self = this;
             var target = dir && dir * this.slideHeight || this.currentPage && $('.page#' + this.currentPage).offset().top;
 
+            if (this.currentPage === 'about') {
+                $('body').attr('class', 'page-' + this.currentPage);
+            }
+
             $('.pages').animate({
                 scrollTop: '+=' + target
-            }, 350, function() {
-                $('body').attr('class', 'page-' + self.currentPage);
+            }, 250, function() {
+                if (this.currentPage !== 'about') {
+                    $('body').attr('class', 'page-' + self.currentPage);
+                }
             });
 
             return false;
