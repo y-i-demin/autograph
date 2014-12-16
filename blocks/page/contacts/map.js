@@ -27,9 +27,6 @@ $(function() {
         center: new google.maps.LatLng(56.0615591, 37.861788),
         disableDefaultUI: true,
         zoomControl: true,
-        zoomControlOptions: {
-            style: google.maps.ZoomControlStyle.SMALL
-        },
         zoom: 15
     });
 
